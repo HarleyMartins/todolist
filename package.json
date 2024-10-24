@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "tailwind": "npx tailwindcss -i ./css/input.css -o ./css/output.css --watch",
-    "ts": "tsc"
+    "ts": "tsc --watch"
   },
   "keywords": [],
   "author": "",
