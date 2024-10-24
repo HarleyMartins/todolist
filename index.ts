@@ -58,21 +58,34 @@ function buildTask(){
         return
     }
 
-    tasks.forEach((task) => {
+    tasks.forEach((task, index) => {
         const taskElement = document.createElement("div");
     taskElement.innerHTML = `
-      <div class="flex flex-col items-start border mb-2">
-        <div class="border px-4 py-4 w-full">
-          <h2>${task.name}</h2>
-          <p>${task.description}</p>
+      <div class="flex flex-col items-start border rounded-md mb-2">
+        <div class=" px-4 py-4 w-full">
+          <h2 class="text-xl font-bold">${task.name}</h2>
+          <p class="text-sm max-w-80">${task.description}</p>
+           <input type="checkbox" id="task-${index}" class="mr-2"> <!-- Checkbox -->
         </div>
       </div>
     `
+ // Adiciona o evento de exclusão ao checkbox
+ const checkbox = taskElement.querySelector(`#task-${index}`) as HTMLInputElement;
+ checkbox.addEventListener("change", () => removeTask(index));
 
     containerTasks.appendChild(taskElement)
 
     })
 }
+
+
+// Função para remover a task
+function removeTask(index: number) {
+  tasks.splice(index, 1); // Remove a tarefa do array
+  localStorage.setItem("tasks", JSON.stringify(tasks)); // Atualiza o localStorage
+  buildTask(); // Reconstrói a lista de tasks
+}
+
 
 btnSubmit.addEventListener("click", capturaTask)
 
