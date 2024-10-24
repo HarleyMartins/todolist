@@ -5,11 +5,11 @@
       "use": "@vercel/static"
     },
     {
-      "src": "public/dist/index.js",
+      "src": "./public/dist/index.js",
       "use": "@vercel/node"
     },
     {
-      "src": "css/output.css",
+      "src": "./css/output.css",
       "use": "@vercel/static"
     }
   ],
